@@ -62,7 +62,7 @@ const Form = () => {
                         <input type='text' name='email' placeholder='Email' value={mail} required onChange={(e) =>{setMail(e.target.value)}} className='p-2 mt-5 rounded-xl border'/>
                         <input type='password' name='password' placeholder='Password' value={password} required onChange={(e) => {setPassword(e.target.value)}} className='p-2 mt-5 rounded-xl border'/>
                         <button className='rounded-xl border bg-emerald-400 text-white py-2'>
-                            Registrar
+                            Registro
                         </button>
                     </form>
                 </div>
