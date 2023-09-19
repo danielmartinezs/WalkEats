@@ -44,21 +44,12 @@ const Navbar = () => {
             <p>
                 {location?.latitutde}
             </p>
-            <Link
-            href="/login">
-                <button
-                type='button'
-                className='login_btn'>
-                    Log In
-                </button>
-            </Link>
             {/*DESKTOP NAVIGATION*/}
             <div className='sm:flex hidden '>
                 {session?.user ? (
                     <div className='flex gap-3 md:gap-5'>
                         <Link
                         href="/">
-                        
                         </Link>
                         <button
                         type='button'
@@ -69,15 +60,14 @@ const Navbar = () => {
                     </div>
                 ) : (
                     <div>
-                        {providers && Object.values(providers).map((provider) => (
+                        <Link
+                        href="/login">
                             <button
                             type='button'
-                            key={provider.name}
-                            onClick={() => {signIn(provider.id)}}
                             className='login_btn'>
                                 Log In
                             </button>
-                        ))}
+                        </Link>
                     </div>
                 ) }
             </div>
@@ -89,15 +79,14 @@ const Navbar = () => {
                     </div>
                 ):(
                     <div>
-                        {providers && Object.values(providers).map((provider) => (
+                        <Link
+                        href="/login">
                             <button
                             type='button'
-                            key={provider.name}
-                            onClick={() => {signIn(provider.id)}}
-                            className='black_btn'>
-                                Sign In
+                            className='login_btn'>
+                                Log In
                             </button>
-                        ))}
+                        </Link>
                     </div>
                 )}
             </div>

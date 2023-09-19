@@ -4,9 +4,9 @@ import { dbConnection } from "@utils/database";
 import bcrypt from "bcrypt";
 
 export async function POST(request){
-    const {rol, username, mail, password} = await request.json()
+    const {username, mail, password} = await request.json()
 
-    console.log(rol, username, mail, password)
+    console.log(username, mail, password)
 
     if(!password || password.lenght < 6) return NextResponse.json(
         {
@@ -39,7 +39,6 @@ export async function POST(request){
                 email: mail,
                 password: hashpass,
                 username,
-                type: rol,
             }
         )
     

@@ -14,10 +14,6 @@ const userSchema = new Schema({
     username: {
         type: String,
         required: [true, 'Username is required']
-    },
-    type: {
-        type: Number,
-        required: [true, 'Type needs to be specified']
     }
 });
 

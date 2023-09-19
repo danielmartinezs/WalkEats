@@ -2,32 +2,38 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import  { AiOutlineCaretDown, AiOutlineCaretUp } from 'react-icons/ai';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import '../styles/home.css';
 import axios, { AxiosError } from 'axios';
 
-const Form = () => {
+const RegisterForm = () => {
     const [error, setError] = useState("");
-    const [rol, setRol] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
     const [mail, setMail] = useState("");
-    const botones = [
-        { rol: 'admin', name: 'Administrador', code: 1 },
-        { rol: 'deliver', name: 'Repartidor', code: 2},
-        { rol: 'comensal', name: 'Comensal', code: 3},
-    ];
+    const router = useRouter();
     
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
             console.log(mail, username, password)
-            const res = await axios.post('/api/auth/signup', {
-                rol,
+            const signUpRes = await axios.post('/api/auth/signup', {
                 username,
                 mail,
                 password
             })
+            console.log(signUpRes);
+            
+            const res = await signIn('credentials', {
+                email: mail,
+                username: username,
+                password: password,
+                redirect: false,
+            })
+            if(res?.ok)
+                return router.push("/dashboard"); 
+            console.log(res);
         } catch (error) {
             if(error instanceof AxiosError){
                 console.log(error);
@@ -48,16 +54,7 @@ const Form = () => {
                     </div>
                     }
                     <h1 className='font-bold text-2xl text-center'>Welcome to WalkEats</h1>
-                    <br/>
-                    <h2 className='font-bold text-2x1 text-center'>Rol</h2>
                     <form className='flex flex-col gap-3' onSubmit={handleSubmit}>
-                        <div className='flex justify-center bg-emerald-400 rounded-xl py-1 space-x-7 text-white focus:scale-125'>
-                            {botones.map((botones, id) => (
-                                <>
-                                <button type='button' onClick={() => {setRol(botones.code)}} className='hover:text-orange-400 focus:font-bold focus:text-orange-400'>{botones.name}</button>    
-                                </>
-                            ))}
-                        </div>
                         <input type='text' name='username' placeholder='Usuario' value={username} required onChange={(e) => {setUsername(e.target.value)}} className='p-2 mt-5 rounded-xl border'/>
                         <input type='text' name='email' placeholder='Email' value={mail} required onChange={(e) =>{setMail(e.target.value)}} className='p-2 mt-5 rounded-xl border'/>
                         <input type='password' name='password' placeholder='Password' value={password} required onChange={(e) => {setPassword(e.target.value)}} className='p-2 mt-5 rounded-xl border'/>
@@ -75,4 +72,4 @@ const Form = () => {
   )
 }
 
-export default Form
+export default RegisterForm
