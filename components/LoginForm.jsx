@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import '../styles/home.css';
@@ -50,6 +51,13 @@ const LoginForm = () => {
                             Iniciar Sesión
                         </button>
                     </form>
+                    <div>
+                        <Link
+                        href='/register'
+                        className='flex gap-3 flex-center text-emerald-400'>
+                        ¿No te has registrado?
+                        </Link>
+                    </div>
                 </div>
                 <div className='w-1/2'>
                     <img src='/assets/placeholder.jpg' alt='dummy' className='sm:block hidden rounded-2xl'/>
