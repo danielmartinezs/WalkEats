@@ -1,7 +1,7 @@
 "use client";
 import React from 'react'
 import Link from 'next/link';
-import Iamge from 'next/image';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { getProviders, signIn, signOut, useSession } from 'next-auth/react';
 import '../styles/navbar.css'
@@ -34,9 +34,11 @@ const Navbar = () => {
             <Link 
             href="/"
             className='flex gap-3 flex-center'>
-            <p className='logo_text'>
-                WalkEats
-            </p>
+                <Image 
+                src="/assets/Logo.svg"
+                alt="WalkEats logo"
+                width={100}
+                height={100}/>
             </Link>
             <p>
                 {location?.longitude}
