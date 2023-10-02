@@ -4,7 +4,6 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import '../styles/home.css';
 import axios, { AxiosError } from 'axios';
 
 const RegisterForm = () => {
@@ -17,13 +16,11 @@ const RegisterForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            console.log(mail, username, password)
             const signUpRes = await axios.post('/api/auth/signup', {
                 username,
                 mail,
                 password
             })
-            console.log(signUpRes);
             
             const res = await signIn('credentials', {
                 email: mail,
@@ -33,7 +30,6 @@ const RegisterForm = () => {
             })
             if(res?.ok)
                 return router.push("/dashboard"); 
-            console.log(res);
         } catch (error) {
             if(error instanceof AxiosError){
                 console.log(error);

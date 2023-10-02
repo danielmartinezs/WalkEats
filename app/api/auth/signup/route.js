@@ -1,12 +1,10 @@
 import { NextResponse } from "next/server";
-import User from "@models/user";
-import { dbConnection } from "@utils/database";
+import User from "@db/models/user";
+import { dbConnection } from "@db/utils/database";
 import bcrypt from "bcrypt";
 
 export async function POST(request){
     const {username, mail, password} = await request.json()
-
-    console.log(username, mail, password)
 
     if(!password || password.lenght < 6) return NextResponse.json(
         {
@@ -19,9 +17,7 @@ export async function POST(request){
 
     try {
         await dbConnection();
-        console.log(mail)
         const userFound = await User.findOne({ email: mail });
-        console.log(userFound);
 
         if(userFound) return NextResponse.json(
             {  
@@ -43,7 +39,6 @@ export async function POST(request){
         )
     
         const savedUser = await user.save()
-        console.log(savedUser)
     
         return NextResponse.json(savedUser)
     } catch (error) {

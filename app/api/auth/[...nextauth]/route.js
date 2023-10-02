@@ -1,8 +1,8 @@
 import NextAuth from "next-auth"; 
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
-import { dbConnection } from "@utils/database";
-import User from "@models/user";
+import { dbConnection } from "@db/utils/database";
+import User from "@db/models/user";
 import bcrypt from "bcrypt";
 
 const handler = NextAuth({
@@ -37,7 +37,6 @@ const handler = NextAuth({
                     if(!userExists){
                         throw new Error("Invalid credentials");
                     }
-                    console.log(userExists);
 
                     const passwordMatch = await bcrypt.compare(
                         credentials?.password,
@@ -56,13 +55,6 @@ const handler = NextAuth({
     ],
     callbacks: {
         jwt({ account, token, profile, user, session }){
-            console.log({
-                account,
-                token,
-                profile,
-                user,
-                session
-            })
             if(user){
                 token.user = user;
             }

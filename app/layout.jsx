@@ -1,5 +1,6 @@
 import Navbar from "@components/Navbar"
 import Provider from "@components/Provider"
+import '../styles/home.css'
 
 export const metadata = {
   title: 'WalkEats',

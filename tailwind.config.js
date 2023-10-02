@@ -13,7 +13,8 @@ module.exports = {
         inter: ['Inter', 'sans-serif'],
       },
       colors: {
-        'primary-orange': '#FF5722',
+        'primary-orange': '#FF9F1C',
+        'light-orange': '#FFBF69',
       }
     },
   },
