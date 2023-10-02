@@ -11,7 +11,7 @@ const Navbar = () => {
     const [providers, setProviders] = useState();
     const [toggleDropdown, setToggleDropdown] = useState(false);
     const [location, setLocation] = useState();
-
+    const [_location_name, set_location_name] = useState("")
     useEffect(() => {
         const setUpProviders = async () => {
             const response = await getProviders();
@@ -20,17 +20,40 @@ const Navbar = () => {
         setUpProviders();
         getLocationJs();
     }, [])
+    const  fetchData = async (latitude, longitude) =>{
+        /*const locData = await fetch('/api/utils', {
+            method: "POST",
+            body: JSON.stringify({
+                latitude: latitude,
+                longitude: longitude,
+            }),
+          });*/
+
+          /*let info = await fetch(
+            `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude}, ${longitude}&key=AIzaSyDbY20tuOJ2KCqdmgoGUYuZUBbqVSZe4Ss`
+          ).then(async (resp) =>{
+            console.log(await resp)
+            let location = await resp.json()
+            set_location_name(location.results[2].formatted_address)
+          }).catch((err) =>{
+            console.log(err)
+          })*/
+          set_location_name("Rectoria, Eje Metropolitano 6, Zona Valle Poniente, 66233 San Pedro Garza García, N.L.")
+
+    }
 
     const getLocationJs = () => {
-        {navigator.geolocation.getCurrentPosition((position) => {
+        navigator.geolocation.getCurrentPosition((position) => {
             console.log(position)
             const{ latitude, longitude } = position.coords;
             setLocation({ latitude, longitude });
-        })}
+            console.log(latitude, longitude)
+            fetchData(latitude, longitude)
+        })
     }
 
     return (
-        <nav className='navbar flex justify-between w-full mb-2 pt-3'>
+        <nav className='navbar flex justify-between w-full mb-2 pt-3 sm:flex-auto'>
             <Link 
             href="/"
             className='flex gap-3 flex-center'>
@@ -41,11 +64,9 @@ const Navbar = () => {
                 height={100}/>
             </Link>
             <p>
-                {location?.longitude}
+                {_location_name}
             </p>
-            <p>
-                {location?.latitutde}
-            </p>
+
             {/*DESKTOP NAVIGATION*/}
             <div className='sm:flex hidden '>
                 {session?.user ? (

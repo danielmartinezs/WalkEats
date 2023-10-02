@@ -1,5 +1,4 @@
-import '../styles/home.css'
-
+import Comments from '@components/Comments'
 const Home = () => {
   return (
     <section className="home w-full flex-center flex-col">
@@ -10,6 +9,9 @@ const Home = () => {
               Walk and Eat
           </span>
         </h1>
+        <div className='w-full'>
+          <Comments></Comments>
+        </div>
     </section>
   )
 }
