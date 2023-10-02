@@ -9,7 +9,7 @@ const Map = () => {
                 width="450"
                 height="500"        
                 referrerPolicy="no-referrer-when-downgrade"
-                src={`https://www.google.com/maps/embed/v1/place?q=place_id:ChIJw4CXDqK9YoYRHaeGQSuBz5U&key=AIzaSyDbY20tuOJ2KCqdmgoGUYuZUBbqVSZe4Ss&q=Space+Needle,Seattle+WA`}>
+                src={`https://www.google.com/maps/embed/v1/place?q=place_id:ChIJw4CXDqK9YoYRHaeGQSuBz5U&key=${process.env.GOOGLE_MAPS_API_KEY}&q=Space+Needle,Seattle+WA`}>
             </iframe>
         </div>
     )
