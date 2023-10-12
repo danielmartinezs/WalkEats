@@ -1,6 +1,7 @@
 import '../styles/home.css'
 import Image from 'next/image'
 import Comments from '@components/Comments'
+import Commentz from '@components/Commentz'
 
 const Home = () => {
   return (
@@ -33,8 +34,9 @@ const Home = () => {
             className='sm:block hidden rounded-2xl border-cyan-200'/>
             </div>
           </div>
-          <div className='w-full items-center justify-center overflow-x-hidden sm:block hidden'>
+          <div className='w-full items-center justify-center overflow-y-hidden overflow-x-hidden sm:block hidden'>
             <Comments/>
+            <Commentz/>
           </div>
         </div>
     </section>

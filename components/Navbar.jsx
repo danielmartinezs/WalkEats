@@ -76,7 +76,7 @@ const Navbar = () => {
                         <button
                         type='button'
                         onClick={signOut}
-                        className='rounded-full border border-black bg-orange-400 shadow-md shadow-orange-400 py-2.5 px-5 text-white text-sm font-inter flex items-center justify-center'>
+                        className='rounded-full bg-orange-400 shadow-md shadow-orange-400 px-5 py-3.5 text-white text-sm font-inter items-center justify-center'>
                         Sign Out
                         </button>
                     </div>
@@ -86,7 +86,7 @@ const Navbar = () => {
                         href="/login">
                             <button
                             type='button'
-                            className='rounded-full border border-black bg-orange-400 shadow-md shadow-orange-400 py-2.5 px-5 text-white text-sm font-inter flex items-center justify-center'>
+                            className='rounded-full bg-orange-400 shadow-md shadow-orange-400 px-5 py-3.5 text-white text-sm font-inter items-center justify-center'>
                                 Log In
                             </button>
                         </Link>
@@ -94,7 +94,7 @@ const Navbar = () => {
                         href="/register">
                             <button
                             type='button'
-                            className='rounded-full border border-black bg-emerald-400 shadow-md shadow-orange-400 py-2.5 px-5 text-white text-sm font-inter flex items-center justify-center'>
+                            className='rounded-full bg-emerald-400 shadow-md shadow-emerald-400 px-5 py-3.5 text-white text-sm font-inter items-center justify-center'>
                                 Register
                             </button>
                         </Link>

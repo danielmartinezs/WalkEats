@@ -1,7 +1,8 @@
 'use client';
 
 import Map from '@components/Map'
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { prueba } from '@components/Animations';
 import { Modal } from "flowbite"
 import io from 'socket.io-client'
 
@@ -13,6 +14,7 @@ const page = () => {
     const [lookingForClient, setLookingForClient] = useState(false)
     const [foundClient, setFoundClient] = useState(false)
     const [modalPedido, setModalPedido] = useState()
+    const pedidoRef = useRef(null);
     let $targetEl;
     let options;
     let modal;
@@ -20,6 +22,7 @@ const page = () => {
 
     useEffect(() => {
         setDocumento(document)
+        prueba(pedidoRef)
     }, [])
 
 
@@ -128,11 +131,11 @@ const page = () => {
                                 </div>
                             </div>
                         ) : (
-                            <div className='flex items-center justify-center mt-5'>
+                            <div className='flex items-center justify-center mt-5' ref={pedidoRef}>
                                 <button
                                     type="button"
                                     onClick={() => handleBroadcastSubscription()}
-                                    className=" rounded bg-primary-orange px-6 pb-2 pt-2.5 w-1/2 h-12 text-3x1 font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
+                                    className=" rounded bg-primary-orange px-6 pb-2 pt-2.5 w-1/2 h-12 text-3x1 font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-orange-400 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-orange-400 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
                                     Buscar pedido
                                 </button>
                             </div>)}
