@@ -1,16 +1,16 @@
 'use client'
-import {useState, useRef, useEffect} from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 const CommentBox = () => {
     const [comment, setComment] = useState([])
     //const [document, setDocument] = useState(null)
     const commentRef = useRef(null)
 
-    const startScroller = () =>{
-        if(document){
+    const startScroller = () => {
+        if (document) {
             console.log("True")
             const scrollers = document.querySelectorAll(".commentScrolller")
-            scrollers.forEach((scroller) =>{
+            scrollers.forEach((scroller) => {
                 scroller.setAttribute("data-animated", true)
 
                 const scrollerInner = scroller.querySelector('.commentScrollerInner')
@@ -22,23 +22,23 @@ const CommentBox = () => {
                     duplicatedItem.setAttribute('aria-hidden', true);
                     scrollerInner.appendChild(duplicatedItem);
                 })
-            })  
+            })
         }
     }
     useEffect(() => {
-       setComment([
+        setComment([
             {
-                comment:"Que gran proyecto",
+                comment: "Que gran proyecto",
                 delay: 'myDelay-0',
                 user: 'Juan Carlos',
             },
             {
-                comment:"Que maravilla!!!",
+                comment: "Que maravilla!!!",
                 delay: 'myDelay-600',
                 user: 'Marianella Espinosa',
             },
             {
-                comment:"Es el servicio que no sabíamos que necesitábamos",
+                comment: "Es el servicio que no sabíamos que necesitábamos",
                 delay: 'myDelay-1000',
                 user: 'Andrea Cabazos',
             },
@@ -50,18 +50,18 @@ const CommentBox = () => {
         ])
         startScroller()
     }, [])
-    
-  return (
-    <div className='commentScrolller w-full bg-orange-100 border-orange-300 rounded shadow p-3'>
-    <ul className='commentScrollerInner '>
-    {comment.map((usercomment, i) => (
-        <li key={i} className=' bg-red-500 rounded-lg '>
-            {usercomment.comment}
-        </li>
-    ))}
-    </ul>
-</div>
-  )
+
+    return (
+        <div className='commentScrolller w-full bg-orange-100 border-orange-300 rounded shadow p-3'>
+            <ul className='commentScrollerInner '>
+                {comment.map((usercomment, i) => (
+                    <li key={i} className=' bg-red-500 rounded-lg '>
+                        {usercomment.comment}
+                    </li>
+                ))}
+            </ul>
+        </div>
+    )
 }
 
 export default CommentBox

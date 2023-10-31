@@ -44,7 +44,7 @@ function Commentz() {
     }
 
     return (
-        <div className='bg-orange-100 rounded shadow p-5 flex items-center justify-center'>
+        <div className='bg-orange-200 rounded shadow p-5 flex items-center justify-center'>
             {comments.map((comentario, i) => {
                 return(
                 <div className='commentario absolute inline-block p-3 ' key={i} ref={addRefs}>
