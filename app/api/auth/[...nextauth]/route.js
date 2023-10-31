@@ -1,7 +1,7 @@
 import NextAuth from "next-auth"; 
 import CredentialsProvider from "next-auth/providers/credentials";
-import GoogleProvider from "next-auth/providers/google";
 import { dbConnection } from "@db/utils/database";
+import { ObjectId } from "mongodb";
 import User from "@db/models/user";
 import bcrypt from "bcrypt";
 
@@ -33,7 +33,7 @@ const handler = NextAuth({
                     const userExists = await User.findOne({
                         email: credentials?.email,
                     }).select("+password");
-                    //if not create new user
+                    //if not throw error
                     if(!userExists){
                         throw new Error("Invalid credentials");
                     }
@@ -43,7 +43,20 @@ const handler = NextAuth({
                         userExists.password
                     );
                     if(!passwordMatch) throw new Error("Invalid credentials");
-
+                    
+                    const id = new ObjectId(userExists._id)
+                    console.log(id)
+                    const userActive = await User.updateOne(
+                        {
+                        _id: id
+                        },
+                        {
+                            $set: {
+                                active: true,
+                            }
+                        }
+                    )
+                    userExists.active = true;
                     return userExists;
                 }
                 catch (error) {

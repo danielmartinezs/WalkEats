@@ -4,16 +4,25 @@ import { dbConnection } from "@db/utils/database";
 import bcrypt from "bcrypt";
 
 export async function POST(request){
-    const {username, mail, password} = await request.json()
+    const {username, mail, password, confpassword} = await request.json()
 
-    if(!password || password.lenght < 6) return NextResponse.json(
+    if(!password || password.lenght < 8) return NextResponse.json(
         {
-            message: "La contraseña debe tener al menos 6 caracteres",
+            message: "La contraseña debe tener al menos 8 caracteres",
         },
         {
             status: 400
         }
     );
+
+    if(password !== confpassword) return NextResponse.json(
+        {
+            message: "Las contraseñas deben ser iguales",
+        },
+        {
+            status: 400
+        }
+    ) 
 
     try {
         await dbConnection();
@@ -35,6 +44,8 @@ export async function POST(request){
                 email: mail,
                 password: hashpass,
                 username,
+                active: true,
+                location: [],
             }
         )
     

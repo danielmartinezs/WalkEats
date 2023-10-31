@@ -12,9 +12,9 @@ const page = () => {
     const [documento, setDocumento] = useState(null)
     const [onDelivery, setOnDelivery] = useState(false)
     const [lookingForClient, setLookingForClient] = useState(false)
+    const [location, setLocation] = useState()
     const [foundClient, setFoundClient] = useState(false)
     const [modalPedido, setModalPedido] = useState()
-    const pedidoRef = useRef(null);
     let $targetEl;
     let options;
     let modal;
@@ -22,7 +22,7 @@ const page = () => {
 
     useEffect(() => {
         setDocumento(document)
-        prueba(pedidoRef)
+        getCoordinates();
     }, [])
 
 
@@ -61,6 +61,18 @@ const page = () => {
         }, 3000);
     }
 
+    const getCoordinates = () => {
+        if (!navigator.geolocation) {
+            alert("Coordenadas no disponibles")
+        }
+        const idPosition = navigator.geolocation.watchPosition((position) => {
+            console.log(position)
+            const { accuracy, latitude, longitude, altitude, heading, speed } = position.coords;
+            //const{ latitude, longitude } = position.coords;
+            setLocation({ accuracy, latitude, longitude });
+        })
+    }
+
     const sendMap = () => {
         setOnDelivery(true)
         modalPedido.hide()
@@ -89,7 +101,7 @@ const page = () => {
                                 <h3 className="text-xl font-semibold text-gray-900 lg:text-2xl dark:text-white">
                                     {deliveryData?.restaurant}
                                 </h3>
-                                <button type="button" onClick={() => closeModal()}  className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                                <button type="button" onClick={() => closeModal()} className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
                                     <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                                     </svg>
@@ -131,13 +143,16 @@ const page = () => {
                                 </div>
                             </div>
                         ) : (
-                            <div className='flex items-center justify-center mt-5' ref={pedidoRef}>
+                            <div className='flex items-center justify-center mt-5'>
                                 <button
                                     type="button"
                                     onClick={() => handleBroadcastSubscription()}
                                     className=" rounded bg-primary-orange px-6 pb-2 pt-2.5 w-1/2 h-12 text-3x1 font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-orange-400 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-orange-400 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
                                     Buscar pedido
                                 </button>
+                                <br/>
+                                <br/>
+                                {JSON.stringify({location})}
                             </div>)}
                     </div>
                 )

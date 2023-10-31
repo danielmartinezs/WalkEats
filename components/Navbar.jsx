@@ -3,6 +3,7 @@ import React from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation'
 import { getProviders, signIn, signOut, useSession } from 'next-auth/react';
 
 const Navbar = () => {
@@ -10,6 +11,7 @@ const Navbar = () => {
     const [providers, setProviders] = useState();
     const [location, setLocation] = useState();
     const [locationName, setLocationName] = useState();
+    const url = usePathname()
 
     useEffect(() => {
         const setUpProviders = async () => {
@@ -43,6 +45,9 @@ const Navbar = () => {
     }
 
     const getLocationJs = () => {
+        if(!navigator.geolocation){
+            setLocationName("Geolocalización inaccesible")
+        }
         {navigator.geolocation.getCurrentPosition((position) => {
             console.log(position)
             const{ latitude, longitude } = position.coords;
@@ -53,82 +58,91 @@ const Navbar = () => {
     }
 
     return (
-        <nav className='h-32 bg-cyan-100 flex justify-between w-full mb-2 pt-3 sm:flex-auto'>
-            <Link 
-            href="/"
-            className='flex gap-3 flex-center'>
-                <Image 
-                src="/assets/LogoNew.jpg"
-                alt="WalkEats logo"
-                width={140}
-                height={130}/>
-            </Link>
-            <p>
-                {locationName}
-            </p>
-            {/*DESKTOP NAVIGATION*/}
-            <div className='sm:flex hidden '>
-                {session?.user ? (
-                    <div className=''>
-                        <Link
-                        href="/">
-                        </Link>
-                        <button
-                        type='button'
-                        onClick={signOut}
-                        className='rounded-full bg-orange-400 shadow-md shadow-orange-400 px-5 py-3.5 text-white text-sm font-inter items-center justify-center'>
-                        Sign Out
-                        </button>
-                    </div>
-                ) : (
-                    <div>
-                        <Link
-                        href="/login">
+        <>
+            {((url.indexOf("/login") !== -1) || (url.indexOf("/register") !== -1))  ? 
+            <>
+            
+            </> : 
+            
+            <>
+                <nav className='h-32 bg-cyan-100 flex justify-between w-full  pt-3 sm:flex-auto'>
+                <Link 
+                href="/"
+                className='flex gap-3 flex-center'>
+                    <Image 
+                    src="/assets/LogoNew.jpg"
+                    alt="WalkEats logo"
+                    width={140}
+                    height={130}/>
+                </Link>
+                <p>
+                    {locationName}
+                </p>
+                {/*DESKTOP NAVIGATION*/}
+                <div className='sm:flex hidden '>
+                    {session?.user ? (
+                        <div className=''>
+                            <Link
+                            href="/">
+                            </Link>
                             <button
                             type='button'
+                            onClick={signOut}
                             className='rounded-full bg-orange-400 shadow-md shadow-orange-400 px-5 py-3.5 text-white text-sm font-inter items-center justify-center'>
-                                Log In
+                            Sign Out
                             </button>
-                        </Link>
-                        <Link
-                        href="/register">
-                            <button
-                            type='button'
-                            className='rounded-full bg-emerald-400 shadow-md shadow-emerald-400 px-5 py-3.5 text-white text-sm font-inter items-center justify-center'>
-                                Register
-                            </button>
-                        </Link>
-                    </div>
-                ) }
-            </div>
-            {/*MOBILE NAVIGATION*/}
-            <div className='sm:hidden flex relative'>
-                {session?.user ? (
-                    <div className='flex'>
+                        </div>
+                    ) : (
+                        <div>
+                            <Link
+                            href="/login">
+                                <button
+                                type='button'
+                                className='rounded-full bg-orange-400 shadow-md shadow-orange-400 px-5 py-3.5 text-white text-sm font-inter items-center justify-center'>
+                                    Log In
+                                </button>
+                            </Link>
+                            <Link
+                            href="/register">
+                                <button
+                                type='button'
+                                className='rounded-full bg-emerald-400 shadow-md shadow-emerald-400 px-5 py-3.5 text-white text-sm font-inter items-center justify-center'>
+                                    Register
+                                </button>
+                            </Link>
+                        </div>
+                    ) }
+                </div>
+                {/*MOBILE NAVIGATION*/}
+                <div className='sm:hidden flex relative'>
+                    {session?.user ? (
+                        <div className='flex'>
 
-                    </div>
-                ):(
-                    <div className='flex flex-col'>
-                        <Link
-                        href="/login">
-                            <button
-                            type='button'
-                            className='rounded-full border border-black bg-orange-400 shadow-md shadow-orange-400 px-5 py-5 text-white text-sm font-inter flex items-center justify-center'>
-                                Log In
-                            </button>
-                        </Link>
-                        <Link
-                        href="/register">
-                            <button
-                            type='button'
-                            className='rounded-full border border-black bg-emerald-400 shadow-md shadow-orange-400 px-5 py-5 text-white text-sm font-inter flex items-center justify-center'>
-                                Register
-                            </button>
-                        </Link>
-                    </div>
-                )}
-            </div>
-        </nav>
+                        </div>
+                    ):(
+                        <div className='flex flex-col'>
+                            <Link
+                            href="/login">
+                                <button
+                                type='button'
+                                className='rounded-full border border-black bg-orange-400 shadow-md shadow-orange-400 px-5 py-5 text-white text-sm font-inter flex items-center justify-center'>
+                                    Log In
+                                </button>
+                            </Link>
+                            <Link
+                            href="/register">
+                                <button
+                                type='button'
+                                className='rounded-full border border-black bg-emerald-400 shadow-md shadow-orange-400 px-5 py-5 text-white text-sm font-inter flex items-center justify-center'>
+                                    Register
+                                </button>
+                            </Link>
+                        </div>
+                    )}
+                </div>
+            </nav>
+            </>}
+        </>
     )
 }
 

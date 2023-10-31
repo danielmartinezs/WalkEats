@@ -14,7 +14,7 @@ const Home = () => {
           </span>
         </h1>
         <br/>
-        <div className='bg-orange-200 rounded w-full flex p-4 items-center'>
+        <div className='bg-orange-200 w-full flex p-4 items-center'>
           <div className='w-1/2 items-center justify-center'>
             <h1 className='text-center mt-5 text-2l p-3 w-full space-x-2'>
               <span className='bg-gradient-to-r from-orange-400 via-primary-orange to-yellow-300 bg-clip-text text-transparent text-2xl font-extrabold'>

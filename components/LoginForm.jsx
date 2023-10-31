@@ -25,45 +25,15 @@ const LoginForm = () => {
             return setError(res.error);
         }
         if(res?.ok){
-            return router.push("/delivery"); 
+            return router.push("/delivery");
         }
         console.log(res);
     }
 
     return (
     <div>
-        {/* <section className='min-h-screen flex items-center justify-center'>
-            <div className='bg-cyan-100 flex rounded-2xl shadow-lg max-w-3x1 p-5 items-center'>
-                <div className='sm:w-1/2'>
-                    {error &&
-                    <div className='bg-red-500 text-white p-2 mb-2'>
-                        {error}
-                    </div>
-                    }
-                    <h1 className='font-bold text-2xl text-center'>Welcome to WalkEats</h1>
-                    <form className='flex flex-col gap-3' onSubmit={handleSubmit}>
-                        <input type='text' name='username' placeholder='Usuario' value={username} required onChange={(e) => {setUsername(e.target.value)}} className='p-2 mt-5 rounded-xl border'/>
-                        <input type='text' name='email' placeholder='Email' value={mail} required onChange={(e) =>{setMail(e.target.value)}} className='p-2 mt-5 rounded-xl border'/>
-                        <input type='password' name='password' placeholder='Password' value={password} required onChange={(e) => {setPassword(e.target.value)}} className='p-2 mt-5 rounded-xl border'/>
-                        <button className='rounded-xl border bg-emerald-400 text-white py-2'>
-                            Iniciar Sesión
-                        </button>
-                    </form>
-                    <div>
-                        <Link
-                        href='/register'
-                        className='flex gap-3 flex-center text-emerald-400'>
-                        ¿No te has registrado?
-                        </Link>
-                    </div>
-                </div>
-                <div className='w-1/2'>
-                    <img src='/assets/logo.jpg' alt='dummy' className='sm:block hidden rounded-2xl'/>
-                </div>
-            </div>
-        </section> */}
-        <section class="min-h-screen bg-cyan-100 dark:bg-gray-900 rounded">
-            <div class="flex items-center justify-center shadow-lg px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <section class=" bg-cyan-100 dark:bg-gray-900 rounded-2x1 py-2">
+            <div class="flex items-center justify-center shadow-lg px-6 py-8 mx-auto max-h-fit lg:py-0">
                 <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                     <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                         {error &&
@@ -93,14 +63,6 @@ const LoginForm = () => {
                             </p>
                         </form>
                     </div>
-                </div>
-                <div className='w-1/2'>
-                    <Image 
-                    src="/assets/LogoNew.jpg"
-                    alt="WalkEats logo"
-                    width={420}
-                    height={420}
-                    className='sm:block hidden rounded-2xl'/>
                 </div>
             </div>
         </section>

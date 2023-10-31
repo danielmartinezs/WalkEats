@@ -1,20 +1,9 @@
 import { gsap } from "gsap";
 
-export const prueba = (pedidoRef) => {
-    const tl = gsap.timeline();
-    tl.to(pedidoRef.current, {
-        xPercent: 60,
-        duration: 6,
-        repeat: -1,
-        ease: "power3.inOut",
-    })
-    return tl;
-}
-
 export const pruebaComments = (commentRef) => {
     const tl = gsap.timeline({repeat: 20});
-    let duration = 1;
-    let pause = 1;
+    let duration = 3;
+    let pause = 3;
     let stagger = duration + pause;
     let targets = commentRef.current;
     let number = targets.length;
@@ -24,7 +13,7 @@ export const pruebaComments = (commentRef) => {
         autoAlpha: 1
     })
     tl.from(targets, {
-        x: 80,
+        x: 100,
         opacity: 0,
         stagger: {
             each: stagger,
@@ -32,7 +21,7 @@ export const pruebaComments = (commentRef) => {
             repeatDelay: repeatDelay
         }
     }).to(targets, {
-        x:-80,
+        x:-100,
         opacity: 0,
         stagger: {
             each: stagger,

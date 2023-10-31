@@ -1,5 +1,6 @@
 import Navbar from "@components/Navbar"
 import Provider from "@components/Provider"
+import Footer from "@components/Footer"
 import '../styles/home.css'
 
 export const metadata = {
@@ -18,6 +19,7 @@ export default function RootLayout({ children }) {
           <main className="app">
             <Navbar/>
             {children}
+            <Footer/>
           </main>
         </Provider>
       </body>

@@ -29,12 +29,12 @@ function Dashpage() {
     <div>
         Dash
         <pre>
-          {/* {JSON.stringify({
+          {JSON.stringify({
             session,
             status
           },
           null,
-          2)} */}
+          2)}
           {JSON.stringify(message, 2)}
         </pre>
     </div>

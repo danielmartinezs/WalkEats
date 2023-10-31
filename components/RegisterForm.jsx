@@ -8,9 +8,10 @@ import axios, { AxiosError } from 'axios';
 
 const RegisterForm = () => {
     const [error, setError] = useState("");
-    const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
     const [mail, setMail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confpassword, setConfPassword] = useState("");
     const router = useRouter();
     
     const handleSubmit = async (e) => {
@@ -19,7 +20,8 @@ const RegisterForm = () => {
             const signUpRes = await axios.post('/api/auth/signup', {
                 username,
                 mail,
-                password
+                password,
+                confpassword
             })
             
             const res = await signIn('credentials', {
@@ -41,8 +43,8 @@ const RegisterForm = () => {
 
     return (
     <div>
-        <section class="bg-cyan-100 dark:bg-gray-900 rounded-2xl">
-            <div class="flex flex-col items-center justify-center shadow-lg px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <section class="bg-cyan-100 dark:bg-gray-900 rounded-2xl py-2 ">
+            <div class="flex flex-col items-center justify-center shadow-lg px-6 py-8 mx-auto max-h-fit lg:py-0">
                      {error &&
                     <div className='bg-red-500 text-white p-2 mb-2'>
                         {error}
@@ -53,22 +55,22 @@ const RegisterForm = () => {
                         <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                             Bienvenido a WalkEats
                         </h1>
-                        <form class="space-y-4 md:space-y-6" action="#">
+                        <form class="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
                             <div>
-                                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Usuario</label>
-                                <input type="email" name="email" id="email" class="bg-gray-50 border border-orange-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required=""/>
+                                <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Usuario</label>
+                                <input type="text" name="username" placeholder="Escribe el nombre de usuario" value={username} required onChange={(e) => {setUsername(e.target.value)}} class="bg-gray-50 border border-orange-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                             </div>
                             <div>
                                 <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                                <input type="email" name="email" id="email" class="bg-gray-50 border border-orange-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required=""/>
+                                <input type="email" name="email" placeholder="name@company.com" value={mail} required onChange={(e) =>{setMail(e.target.value)}} class="bg-gray-50 border border-orange-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                             </div>
                             <div>
                                 <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contraseña</label>
-                                <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-orange-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required=""/>
+                                <input type="password" name="password" placeholder="••••••••" value={password} required onChange={(e) => {setPassword(e.target.value)}} class="bg-gray-50 border border-orange-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                             </div>
                             <div>
                                 <label for="confirm-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirmar Contraseña</label>
-                                <input type="confirm-password" name="confirm-password" id="confirm-password" placeholder="Al menos 8 caracteres" class="bg-gray-50 border border-orange-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required=""/>
+                                <input type="confirm-password" name="confirm-password" placeholder="Al menos 8 caracteres" value={confpassword} required onChange={(e) => {setConfPassword(e.target.value)}}  class="bg-gray-50 border border-orange-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                             </div>
                             <div class="flex items-start">
                                 <div class="flex items-center h-5">
