@@ -2,8 +2,8 @@ import { gsap } from "gsap";
 
 export const pruebaComments = (commentRef) => {
     const tl = gsap.timeline({repeat: 20});
-    let duration = 3;
-    let pause = 3;
+    let duration = 2;
+    let pause = 2;
     let stagger = duration + pause;
     let targets = commentRef.current;
     let number = targets.length;

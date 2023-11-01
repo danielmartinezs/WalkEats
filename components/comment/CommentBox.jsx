@@ -30,7 +30,6 @@ const CommentBox = () => {
     const startScroller = () => {
         const copy = document.querySelector(".commentScrollerInner").cloneNode(true)
         document.querySelector(".commentScrolller").appendChild(copy)
-
     }
 
     useEffect(() => {
