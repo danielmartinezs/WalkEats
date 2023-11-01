@@ -1,30 +1,37 @@
 'use client'
 import { useState, useRef, useEffect } from 'react'
 
+const Comments = ({comment}) => {
+    const dupComments = comment.concat(comment)
+    const dupeDob = dupComments.concat(dupComments)
+    const dupped = (i) =>{
+        console.log(i)
+        if(i>comment.length-1){
+            return true;
+        }
+        return false;
+    }
+    return (
+        <>
+            {dupeDob.map((usercomment, i) => (
+                <li key={i} className=' bg-red-500 rounded-lg ' aria-hidden={dupped(i)}>
+                    {usercomment.comment}
+                </li>
+            ))}
+        </>
+    )
+}
+
 const CommentBox = () => {
     const [comment, setComment] = useState([])
     //const [document, setDocument] = useState(null)
-    const commentRef = useRef(null)
+    const commentRef = useRef(false)
 
     const startScroller = () => {
-        if (document) {
-            console.log("True")
-            const scrollers = document.querySelectorAll(".commentScrolller")
-            scrollers.forEach((scroller) => {
-                scroller.setAttribute("data-animated", true)
-
-                const scrollerInner = scroller.querySelector('.commentScrollerInner')
-                console.log(scrollerInner.children)
-                const scrollerContent = Array.from(scrollerInner);
-                console.log(scrollerContent)
-                Array.from(scrollerInner.children).forEach((item) => {
-                    const duplicatedItem = item.cloneNode(true);
-                    duplicatedItem.setAttribute('aria-hidden', true);
-                    scrollerInner.appendChild(duplicatedItem);
-                })
-            })
-        }
+        const copy = document.querySelector(".commentScrollerInner").cloneNode(true)
+        document.querySelector(".commentScrolller").appendChild(copy)
     }
+
     useEffect(() => {
         setComment([
             {
@@ -48,17 +55,17 @@ const CommentBox = () => {
                 user: 'Joel Vázquez'
             }
         ])
-        startScroller()
+        if (!commentRef.current) {
+            commentRef.current = false;
+        }
     }, [])
 
     return (
-        <div className='commentScrolller w-full bg-orange-100 border-orange-300 rounded shadow p-3'>
-            <ul className='commentScrollerInner '>
-                {comment.map((usercomment, i) => (
-                    <li key={i} className=' bg-red-500 rounded-lg '>
-                        {usercomment.comment}
-                    </li>
-                ))}
+        <div className='commentScrolller w-full bg-orange-100 border-orange-300 rounded shadow p-3' data-animated={true}>
+            <ul className='commentScrollerInner ' >
+                <Comments
+                comment = {comment}
+                />
             </ul>
         </div>
     )
