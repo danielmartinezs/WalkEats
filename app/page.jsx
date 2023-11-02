@@ -1,9 +1,9 @@
 import '../styles/home.css'
 import Image from 'next/image'
-import Comments from '@components/Comments'
+import Comments from '@components/comment/CommentBox'
 import Commentz from '@components/Commentz'
-
 const Home = () => {
+
   return (
     <section className="home w-full flex-center flex-col">
       <h1 className="text-center mt-5 text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl">

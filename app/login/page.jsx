@@ -7,8 +7,8 @@ import Form from '@components/LoginForm';
 
 const login = () => {
   return (
-    <div className='w-full max-w-full min-h-screen grid grid-cols-2 loginBG'>
-      <div className='col-span-1 flex items-center justify-center'>
+    <div className='w-full max-w-full min-h-screen sm:grid sm:grid-cols-2 loginBG flex items-center justify-center'>
+      <div className='sm:col-span-1 flex items-center justify-center'>
         <Image
           src="/assets/LogoNew.jpg"
           alt="WalkEats logo"
@@ -16,7 +16,7 @@ const login = () => {
           height={180}
           className='sm:block hidden rounded-2xl' />
       </div>
-      <div className='col-span-1 flex items-center justify-center'>
+      <div className='sm:col-span-1 flex items-center justify-center'>
         <Form />
       </div>
     </div>

@@ -27,37 +27,22 @@ const CommentBox = () => {
     //const [document, setDocument] = useState(null)
     const commentRef = useRef(false)
 
+    const fetchComments= async () =>{
+        console.log('fetch');
+        const response = await fetch('/api/fun', { method: 'GET' });
+        const data = await response.json();
+        console.log(response)
+        console.log(data)
+        setComment(data);
+    }
+    
     const startScroller = () => {
         const copy = document.querySelector(".commentScrollerInner").cloneNode(true)
         document.querySelector(".commentScrolller").appendChild(copy)
     }
 
     useEffect(() => {
-        setComment([
-            {
-                comment: "Que gran proyecto",
-                delay: 'myDelay-0',
-                user: 'Juan Carlos',
-            },
-            {
-                comment: "Que maravilla!!!",
-                delay: 'myDelay-600',
-                user: 'Marianella Espinosa',
-            },
-            {
-                comment: "Es el servicio que no sabíamos que necesitábamos",
-                delay: 'myDelay-1000',
-                user: 'Andrea Cabazos',
-            },
-            {
-                comment: "Es hermoso",
-                delay: 'myDelay-1600',
-                user: 'Joel Vázquez'
-            }
-        ])
-        if (!commentRef.current) {
-            commentRef.current = false;
-        }
+        fetchComments()
     }, [])
 
     return (
