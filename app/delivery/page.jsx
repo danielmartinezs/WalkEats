@@ -1,13 +1,14 @@
 'use client';
 
 import Map from '@components/Map'
+import { useSession } from 'next-auth/react';
 import { useEffect, useRef, useState } from 'react';
-import { prueba } from '@components/Animations';
 import { Modal } from "flowbite"
 import io from 'socket.io-client'
 
 const page = () => {
 
+    const { data: session, status } = useSession();
     const [deliveryData, setDeliveryData] = useState(null)
     const [documento, setDocumento] = useState(null)
     const [onDelivery, setOnDelivery] = useState(false)
@@ -28,7 +29,6 @@ const page = () => {
 
     const handleBroadcastSubscription = () => {
         setLookingForClient(true)
-        //setFoundClient(true)
         setTimeout(() => {
             console.log(lookingForClient)
             const socket = io("http://localhost:3001")
@@ -91,7 +91,7 @@ const page = () => {
 
     return (
         /*MODAL*/
-        <div className='relative w-full flex-center z-5'>
+        <section className='w-full flex-center flex-col'>
             {/*------------------------------------------------------------------- */}
             <div>
                 <div id="modalEl" tabIndex="-1" aria-hidden="true" className="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden justify-center  overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -143,21 +143,25 @@ const page = () => {
                                 </div>
                             </div>
                         ) : (
-                            <div className='flex items-center justify-center mt-5'>
-                                <button
-                                    type="button"
-                                    onClick={() => handleBroadcastSubscription()}
-                                    className=" rounded bg-primary-orange px-6 pb-2 pt-2.5 w-1/2 h-12 text-3x1 font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-orange-400 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-orange-400 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
-                                    Buscar pedido
-                                </button>
-                                <br/>
-                                <br/>
-                                {JSON.stringify({location})}
+                            <div className='w-full bg-orange-200'>
+                                <div className='w-full p-4 text-center'>
+                                    <h1>
+                                        <span className='text-center mt-5 text-2xl font-extrabold leading-[1.15] text-black sm:text-3xl'>
+                                            ¡Bienvenido {session?.user?.username}!
+                                        </span>
+                                    </h1>
+                                    <button
+                                        type="button"
+                                        onClick={() => handleBroadcastSubscription()}
+                                        className="rounded-full bg-primary-orange p-4 pb-2 pt-2.5 m-4 w-1/2 h-12 text-3x1 font-medium uppercase leading-normal text-white shadow transition duration-150 ease-in-out hover:bg-orange-400 hover:shadow-orange-400 focus:bg-orange-400 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
+                                        Buscar Pedido
+                                    </button>
+                                </div>
                             </div>)}
                     </div>
                 )
             }
-        </div>
+        </section>
     )
 }
 

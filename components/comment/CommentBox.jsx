@@ -5,7 +5,6 @@ const Comments = ({comment}) => {
     const dupComments = comment.concat(comment)
     const dupeDob = dupComments.concat(dupComments)
     const dupped = (i) =>{
-        console.log(i)
         if(i>comment.length-1){
             return true;
         }
