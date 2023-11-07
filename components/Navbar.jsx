@@ -59,7 +59,7 @@ const Navbar = () => {
 
     return (
         <>
-            {((url.indexOf("/login") !== -1) || (url.indexOf("/register") !== -1))  ? 
+            {((url.indexOf("/login") !== -1) || (url.indexOf("/register") !== -1)) ? 
             <>
             
             </> : 
