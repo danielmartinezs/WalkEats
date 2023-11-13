@@ -11,21 +11,15 @@ const page = () => {
 
     const { data: session, status } = useSession();
     const [deliveryData, setDeliveryData] = useState(null)
-    const [documento, setDocumento] = useState(null)
     const [onDelivery, setOnDelivery] = useState(false)
     const [lookingForClient, setLookingForClient] = useState(false)
     const [location, setLocation] = useState()
     const [foundClient, setFoundClient] = useState(false)
     const [modalPedido, setModalPedido] = useState()
-    let modalPed = 'modalPed'
+    let modalPed = 'modalPed';
     let $targetEl;
     let options;
     let modal;
-
-
-    useEffect(() => {
-        setDocumento(document)
-    }, [])
 
 
     const handleBroadcastSubscription = () => {
@@ -46,7 +40,7 @@ const page = () => {
     }
 
     const createModal = () => {
-        $targetEl = documento.getElementById(modalPed);
+        $targetEl = document.getElementById(modalPed);
         options = {
             placement: 'middle-center',
             backdrop: 'dynamic',
@@ -106,7 +100,8 @@ const page = () => {
                 <Modalz
                     id={modalPed}
                     modal={modalPedido}
-                    datos={deliveryData} />
+                    datos={deliveryData}
+                    sendMap = {sendMap} />
             </div>
             {onDelivery ?
                 (

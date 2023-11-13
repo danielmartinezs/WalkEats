@@ -1,4 +1,5 @@
 import { gsap } from "gsap";
+import SplitType from "split-type";
 
 export const pruebaComments = (commentRef) => {
     const tl = gsap.timeline({repeat: 20});
@@ -29,4 +30,15 @@ export const pruebaComments = (commentRef) => {
             repeatDelay: repeatDelay
         }
     }, duration)
+}
+
+export const fadeRevealText = (textRef) => {
+    console.log(textRef.current)
+    const splitText = new SplitType(textRef.current)
+    gsap.to('.char', {
+        y: 80,
+        stagger: 0.05,
+        delay: 0.6,
+        duration: 0.1,
+    })
 }

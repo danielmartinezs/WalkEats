@@ -2,16 +2,18 @@
 import React from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { TiLocation } from 'react-icons/ti';
 import { usePathname } from 'next/navigation'
 import { getProviders, signIn, signOut, useSession } from 'next-auth/react';
+import { fadeRevealText } from './Animations';
 
 const Navbar = () => {
     const { data: session } = useSession();
     const [providers, setProviders] = useState();
     const [location, setLocation] = useState();
     const [locationName, setLocationName] = useState();
+    const locationRef = useRef(null);
     const url = usePathname()
 
     useEffect(() => {
@@ -20,8 +22,11 @@ const Navbar = () => {
             setProviders(response);
         }
         setUpProviders();
-        getLocationJs();
     }, [])
+
+    useEffect(() => {
+        animation(locationRef)
+    }, [locationName])
 
     const fetchData = async (latitude, longitude) => {
         /*const locData = await fetch('/api/utils', {
@@ -42,7 +47,6 @@ const Navbar = () => {
           console.log(err)
         })*/
         setLocationName("Rectoria, Eje Metropolitano 6, Zona Valle Poniente, 66233 San Pedro Garza García, N.L.")
-
     }
 
     const getLocationJs = () => {
@@ -54,10 +58,15 @@ const Navbar = () => {
                 console.log(latitude, longitude)
                 fetchData(latitude, longitude)
             })
+            fadeRevealText(locationRef)
         }
         else {
             alert("Geolocation is not supported by this browser.")
         }
+    }
+
+    const animation = () => {
+        fadeRevealText(locationRef)
     }
 
     return (
@@ -79,14 +88,17 @@ const Navbar = () => {
                                 height={130} />
                         </Link>
                         <button
-                        className='rounded-full px-2 py-3.5'>
-                            <TiLocation 
-                            color='orange'
-                            size='0.5 rem'/>
+                            onClick={() => { getLocationJs() }}
+                            className='rounded-full px-2 py-3.5'>
+                            <TiLocation
+                                color='orange'
+                                size='0.5 rem' />
                         </button>
-                        <p>
-                            {locationName}
-                        </p>
+                        {location &&
+                            <div ref={locationRef} className='relative top-[-50%] right-40'>
+                                {locationName}
+                            </div>
+                        }
                         {/*DESKTOP NAVIGATION*/}
                         <div className='md:block hidden md:max-2xl:flex'>
                             {session?.user ? (
@@ -97,7 +109,7 @@ const Navbar = () => {
                                     <button
                                         type='button'
                                         onClick={signOut}
-                                        className='rounded-full bg-orange-400 shadow-md shadow-orange-400 px-5 py-3.5 mr-2.5 text-white text-sm font-inter items-center justify-center'>
+                                        className='rounded-full bg-primary-orange shadow-md shadow-orange-400 hover:bg-orange-400 px-5 py-3.5 mr-2.5 text-white text-sm font-inter items-center justify-center'>
                                         Sign Out
                                     </button>
                                 </div>
@@ -107,7 +119,7 @@ const Navbar = () => {
                                         href="/login">
                                         <button
                                             type='button'
-                                            className='rounded-full bg-orange-400 shadow-md shadow-orange-400 px-5 py-3.5 mr-2.5 text-white text-sm font-inter items-center justify-center'>
+                                            className='rounded-full bg-primary-orange shadow-md shadow-orange-400 hover:bg-orange-400 px-5 py-3.5 mr-2.5 text-white text-sm font-inter items-center justify-center'>
                                             Log In
                                         </button>
                                     </Link>
@@ -115,7 +127,7 @@ const Navbar = () => {
                                         href="/register">
                                         <button
                                             type='button'
-                                            className='rounded-full bg-emerald-400 shadow-md shadow-emerald-400 px-5 py-3.5 mr-2.5 text-white text-sm font-inter items-center justify-center'>
+                                            className='rounded-full bg-emerald-400 shadow-md shadow-emerald-400 hover:bg-primary-green px-5 py-3.5 mr-2.5 text-white text-sm font-inter items-center justify-center'>
                                             Register
                                         </button>
                                     </Link>
@@ -132,7 +144,7 @@ const Navbar = () => {
                                     <button
                                         type='button'
                                         onClick={signOut}
-                                        className='rounded-full bg-orange-400 shadow-md shadow-orange-400 px-5 py-3.5 mr-4.5 text-white text-sm font-inter items-center justify-center'>
+                                        className='rounded-full bg-primary-orange shadow-md shadow-orange-400 hover:bg-orange-400 px-5 py-3.5 mr-4.5 text-white text-sm font-inter items-center justify-center'>
                                         Sign Out
                                     </button>
                                 </div>
@@ -142,7 +154,7 @@ const Navbar = () => {
                                         href="/login">
                                         <button
                                             type='button'
-                                            className='rounded-full border bg-orange-400 shadow-md shadow-orange-400 px-5 py-5 mr-4.5 text-white text-sm font-inter items-center justify-center'>
+                                            className='rounded-full border bg-primary-orange shadow-md shadow-orange-400 hover:bg-orange-400 px-5 py-5 mr-4.5 text-white text-sm font-inter items-center justify-center'>
                                             Log In
                                         </button>
                                     </Link>
@@ -150,7 +162,7 @@ const Navbar = () => {
                                         href="/register">
                                         <button
                                             type='button'
-                                            className='rounded-full border bg-emerald-400 shadow-md shadow-emerald-400 px-5 py-5 mr-4.5 text-white text-sm font-inter items-center justify-center'>
+                                            className='rounded-full border bg-emerald-400 shadow-md shadow-emerald-400 hover:bg-primary-green px-5 py-5 mr-4.5 text-white text-sm font-inter items-center justify-center'>
                                             Register
                                         </button>
                                     </Link>

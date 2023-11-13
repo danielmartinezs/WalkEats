@@ -56,7 +56,12 @@
       white 100%
     );
   }
-/*  -----------------------------------------------------  */
+/*  --------------------ANIMATIONS---------------------------------  */
+.char{
+  transform: translate(115px);
+  transition: transform .15s;
+}
+
 .commentScrolller {
   max-width: 100%;
 }
