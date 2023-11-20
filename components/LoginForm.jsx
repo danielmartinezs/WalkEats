@@ -15,6 +15,7 @@ const LoginForm = () => {
     const router = useRouter();
     const reRef = useRef();
 
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         const token = await reRef.current.executeAsync()
@@ -28,6 +29,7 @@ const LoginForm = () => {
                 token: token,
             })
         })
+        
         console.log(response)
         if (response.status === 201) {
             const res = await signIn('credentials', {
@@ -59,7 +61,10 @@ const LoginForm = () => {
                                 </div>
                             }
                             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                                Bienvenido a WalkEats
+                                Bienvenido a
+                                <span className='text-2xl font-extrabold bg-gradient-to-r from-orange-400 via-primary-orange to-yellow-300 bg-clip-text text-transparent'>
+                                    WalkEats
+                                </span>
                             </h1>
                             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
                                 <div>
@@ -78,6 +83,7 @@ const LoginForm = () => {
                                 size="invisible"
                                 ref={reRef}
                                 onChange={set_captcha} />
+                                  
                                 <button type="submit" className="w-full text-white bg-emerald-400 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Iniciar sesión</button>
                                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                                     ¿Aún no tienes una cuenta? <a href="register" className="font-medium text-emerald-300 hover:underline dark:text-emerald-300">Regístrate aquí</a>

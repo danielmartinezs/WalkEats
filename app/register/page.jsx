@@ -7,10 +7,8 @@ import Form from '@components/RegisterForm';
 
 const register = () => {
   return (
-    <div className='w-full max-w-full min-h-screen grid grid-cols-2 registerBG'>
-      <div className='col-span-1'>
-
-      </div>
+    <div className='sm:flex sm:justify-center md:max-2xl:grid w-full max-w-full min-h-screen grid-cols-2 registerBG'>
+      <div className='col-span-1 sm:'/>
       <div className='col-span-1 flex items-center justify-center '>
         <Form />
       </div>
