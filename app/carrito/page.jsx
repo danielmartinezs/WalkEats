@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import Modalz from '@components/Modalz';
 import CartCard from '@components/CartCard';
 import items from '@components/items';
@@ -38,16 +39,13 @@ function page() {
         modal.toggle()
     }
 
-    const sendCheckout = () => {
-        alert('Mi loco nos vamos al checkout')
-    }
-
     return (
         <section className='w-full flex flex-col justify-center items-center bg-orange-200'>
             <div>
                 <Modalz
                     id={modalPag}
-                    modal={modalPago} />
+                    modal={modalPago}
+                    total={total} />
             </div>
             <div className='sm:col-span-3 w-full text-center items-center justify-center bg-primary-orange'>
                 Carrito
@@ -55,10 +53,10 @@ function page() {
                     return (
                         <div key={i}>
                             <CartCard
-                            pedido={pedido}
-                            completo = {pedidos}
-                            setPedidos = {setPedidos}
-                            number={i} />
+                                pedido={pedido}
+                                completo={pedidos}
+                                setPedidos={setPedidos}
+                                number={i} />
                         </div>
                     )
                 })}
@@ -73,19 +71,20 @@ function page() {
                         ${total}
                     </span>
                 </div>
-                <br />
                 <button
                     onClick={() => { createModal() }}
                     className='bg-primary-orange text-white p-4 m-4 rounded-full shadow transition duration-150 ease-in-out hover:bg-orange-400 hover:shadow-orange-400'>
                     Método de pago
                 </button>
             </div>
-            <button
-                type="button"
-                onClick={() => { sendCheckout() }}
-                className="rounded-full bg-primary-orange p-4 pb-2 pt-2.5 m-4 w-1/2 h-12 text-3x1 font-medium uppercase leading-normal text-white shadow transition duration-150 ease-in-out hover:bg-orange-400 hover:shadow-orange-400 focus:bg-orange-400 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
-                Checkout
-            </button>
+            <Link
+                href="/checkout">
+                <button
+                    type="button"
+                    className="rounded-full bg-primary-orange p-4 pb-2 pt-2.5 m-4 w-full h-12 text-3x1 font-medium uppercase leading-normal text-white shadow transition duration-150 ease-in-out hover:bg-orange-400 hover:shadow-orange-400 focus:bg-orange-400 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
+                    Checkout
+                </button>
+            </Link>
         </section>
     )
 }
