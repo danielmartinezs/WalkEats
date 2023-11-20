@@ -1,5 +1,8 @@
+'use client'
+
 import React from 'react'
 import Map from '@components/Map'
+import Mapa from '@components/Mapa'
 
 function page() {
     return (
@@ -16,7 +19,8 @@ function page() {
             </section>
             <section>
                 <div className='w-full bg-orange-200'>
-                    <Map />
+                    <Mapa />
+                    {/* <Map /> */}
                 </div>
             </section>
         </div>
