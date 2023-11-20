@@ -1,10 +1,16 @@
 import { NextResponse } from "next/server";
-import User from "@db/models/user";
-import { dbConnection } from "@db/utils/database";
+import User from "@utils/models/user";
+import { dbConnection } from "@utils/utils/database";
 import bcrypt from "bcrypt";
+import {validateHuman} from '@utils/utils/catcha'
+
 
 export async function POST(request){
-    const {username, mail, password, confpassword} = await request.json()
+    const human = await validateHuman(token)
+    if(!human){
+        return new Response(JSON.stringify({validated: false, error: "Falló el registro por culpa del captcha"}), { status: 400 })
+    }
+    const {username, mail, password, confpassword, token} = await request.json()
 
     if(!password || password.lenght < 8) return NextResponse.json(
         {

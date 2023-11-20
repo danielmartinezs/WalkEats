@@ -1,27 +1,48 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Image from 'next/image';
 import { signIn } from 'next-auth/react';
+import ReCAPTCHA from 'react-google-recaptcha'
 import { useRouter } from 'next/navigation';
 import axios, { AxiosError } from 'axios';
 
 const RegisterForm = () => {
+    const [_captcha, set_captcha] = useState("")
     const [error, setError] = useState("");
     const [username, setUsername] = useState("");
     const [mail, setMail] = useState("");
     const [password, setPassword] = useState("");
     const [confpassword, setConfPassword] = useState("");
     const router = useRouter();
+    const reRef = useRef();
 
+    /*
+    TODO: Whatsappi
+    TODO: Google
+    --------------
+    TODO: Landing Page
+    TODO: Estructura Tienda
+    TODO: Fotos Productos
+    TODO: Terminar arreglos del carrito
+    -TODO: Responsiveness
+    --------------------------
+    -TODO: Cuentas de usuario
+    
+    --------------------
+    -TODO: Hacer seguro HTML
+    */
     const handleSubmit = async (e) => {
         e.preventDefault()
+        const token = await reRef.current.executeAsync()
+        reRef.current.reset();
         try {
             const signUpRes = await axios.post('/api/auth/signup', {
                 username,
                 mail,
                 password,
-                confpassword
+                confpassword,
+                token: token,
             })
 
             const res = await signIn('credentials', {
