@@ -22,8 +22,8 @@ function CartCard({ number, completo, setPedidos, pedido }) {
     return (
         <div className='flex h-1/2 p-3 bg-orange-300 border border-spacing-3 border-primary-green rounded-2xl'>
             <Image
-                src="/assets/Logo.jpg"
-                alt="WalkEats logo"
+                src={pedido.picture}
+                alt={pedido.name}
                 width={180}
                 height={180}
                 className='sm:block flex' />
