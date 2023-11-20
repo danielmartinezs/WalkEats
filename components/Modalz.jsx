@@ -1,15 +1,22 @@
 'use client';
 
-import React from 'react'
 import { BiCheckCircle } from 'react-icons/bi'
 import { ImCross } from 'react-icons/im'
 import { useRef, useState } from 'react';
 import { Modal } from "flowbite"
+import PaymentForm from '@components/PaymentForm'
 
 function Modalz({ id, modal, datos, sendMap }) {
 
+    const [showInput, setShowInput] = useState(false)
+    const [showPayment, setShowPayment] = useState(false)
+    const [cobro, setCobro] = useState();
+
     const closeModal = () => {
         modal.hide()
+        setShowInput(false)
+        setShowPayment(false)
+        setCobro()
     }
 
     return (
@@ -70,13 +77,23 @@ function Modalz({ id, modal, datos, sendMap }) {
                             </button>
                         </div>
                         <div className="flex flex-col justify-center items-center p-6">
-                            <button type="button" onClick={() => sendMap()} className="text-white bg-primary-orange hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 w-full text-center focus:z-10 dark:bg-primary-green dark:hover:bg-emerald-700 dark:focus:ring-emerald-200">
+                            <button type="button" onClick={() => {setShowPayment(true), setShowInput(false)}} className="text-white bg-primary-orange hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 w-full text-center focus:z-10 dark:bg-primary-green dark:hover:bg-emerald-700 dark:focus:ring-emerald-200">
                                 Pago en línea
                             </button>
-                            {}
-                            <button type="button" onClick={() => closeModal()} className="text-white bg-primary-orange hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 w-full text-center focus:z-10 dark:bg-primary-green dark:hover:bg-emerald-700 dark:text-gray-300 dark:hover:text-white dark:border-gray-500">
+                            {showPayment &&
+                            <div>
+                                <PaymentForm/>
+                            </div>
+                            }
+                            <button type="button" onClick={() => {setShowInput(true), setShowPayment(false)}} className="text-white bg-primary-orange hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 w-full text-center focus:z-10 dark:bg-primary-green dark:hover:bg-emerald-700 dark:text-gray-300 dark:hover:text-white dark:border-gray-500">
                                 Pago en efectivo
                             </button>
+                            {showInput &&
+                            <div className='flex flex-col m-4'>
+                                Ingrese el monto a pagar:
+                                <br/>
+                                <input value={cobro} onChange={(e) => {setCobro(e.target.value)}}/>
+                            </div>}
                         </div>
                     </div>
                 </div>
