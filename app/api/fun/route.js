@@ -21,5 +21,6 @@ export const GET = (request) =>{
           user: 'Joel Vázquez'
       }
   ]), {status: 201})
+  //return new Response({error: "Error connecting to the DB"}, {status: 500})
   }
   

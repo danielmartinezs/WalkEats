@@ -56,12 +56,14 @@
       white 100%
     );
   }
+
+/*  -----------------------Comments------------------------------  */
+
 /*  --------------------ANIMATIONS---------------------------------  */
 .char{
   transform: translate(115px);
   transition: transform .15s;
 }
-
 .commentScrolller {
   max-width: 100%;
 }
@@ -132,3 +134,88 @@
       opacity: 1;
     }
   }
+
+/*-----------------/-----------------------*/
+
+.demo-wrap {
+  overflow: hidden;
+  position: relative;
+}
+
+.demo-bg {
+  opacity: 0.65;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  @apply h-screen;
+}
+
+.demo-content {
+  position: relative;
+}
+
+.scroll-container,
+.scroll-area {
+  max-width: 100%;
+  @apply h-screen
+}
+
+.scroll-container {
+  overflow: auto;
+  scroll-snap-type: y mandatory;
+
+}
+
+.scroll-area {
+  scroll-snap-align: center;
+}
+
+.orange-gradient {
+  @apply from-yellow-300 via-primary-orange to-orange-400
+}
+.green-gradient {
+  @apply from-green-300 via-primary-green to-emerald-500
+}
+
+/*.scroll-area:nth-of-type(even) {
+  @apply 
+}*/
+
+.LP_mainImage{
+  -webkit-mask: linear-gradient(
+    90deg,
+    transparent,
+    white 20%,
+    white 100%,
+    transparent
+  );
+  mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+}
+
+/*-------------------/Store------------------------*/
+.wrapper{
+  @apply flex h-screen w-full justify-center items-center
+}
+.accordion{
+  @apply w-full p-3
+}
+.store_accordion{
+  @apply bg-slate-500 rounded-b-xl mt-5 mb-1 
+}
+.store_accordion_title{
+  @apply p-3 text-center text-4xl flex justify-between items-center
+}
+.store_accordion_content{
+  @apply overflow-hidden mt-5 max-h-0 hidden;
+  transition: all 0.5s cubic-bezier(0,1,0,1);
+}
+.store_accordion_content.show{
+  @apply bg-white h-auto max-h-max grid my-8  w-full lg:grid-cols-4 md:grid-cols-3 lg:gap-5 gap-2;
+  transition: all 0.5s cubic-bezier(1,0,1,0);
+}
+.store_Card{
+  height: 28rem;
+  max-height: 28rem;
+  @apply p-3;
+}
