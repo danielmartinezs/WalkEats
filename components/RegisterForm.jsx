@@ -18,8 +18,14 @@ const RegisterForm = () => {
     const reRef = useRef();
 
     /*
-    TODO: Whatsappi
-    TODO: Google
+    -TODO: Jugar con dimensiones del navbar
+    TODO: Mapa de Google
+
+    TODO: Juntar los carritos y hacerlos funcionales
+
+    TODO: Funcionalidades en la tienda (objeto 0 en counter)
+    TODO: Fondos en los acordiones
+    TODO: Arreglar dimensiones tienda
     --------------
     TODO: Landing Page
     TODO: Estructura Tienda
