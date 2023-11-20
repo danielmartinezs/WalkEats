@@ -65,7 +65,7 @@ const Navbar = () => {
             </> : 
             
             <>
-                <nav className='h-32 bg-cyan-100 flex justify-between w-full  pt-3 sm:flex-auto'>
+                <nav className='h-20 bg-cyan-100 flex justify-between w-full  pt-3 sm:flex-auto'>
                 <Link 
                 href="/"
                 className='flex gap-3 flex-center'>

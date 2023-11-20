@@ -5,12 +5,12 @@ import { Footer } from 'flowbite-react'
 const Footers = () => {
   return (
     <Footer 
-    className='bg-cyan-100' 
+    className='bg-cyan-100 rounded-none' 
     container>
       <Footer.Brand
         alt="Logo"
         href="/"
-        name="Walk Eats"
+        name="WalkEats"
         src="/assets/LogoNew.jpg"
       />
       <Footer.LinkGroup>

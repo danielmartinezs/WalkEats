@@ -18,12 +18,19 @@ const RegisterForm = () => {
     const reRef = useRef();
 
     /*
-    TODO:VIERNES
-    ---Captcha
-    * Remove axios
-    * Cambiar los NEXTRESPONSE del backend
-    * Arrreglos al FRONT
-    * Inicios de tienda
+    TODO: Whatsappi
+    TODO: Google
+    --------------
+    TODO: Landing Page
+    TODO: Estructura Tienda
+    TODO: Fotos Productos
+    TODO: Terminar arreglos del carrito
+    -TODO: Responsiveness
+    --------------------------
+    -TODO: Cuentas de usuario
+    
+    --------------------
+    -TODO: Hacer seguro HTML
     */
     const handleSubmit = async (e) => {
         e.preventDefault()
