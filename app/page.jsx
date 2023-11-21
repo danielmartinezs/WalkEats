@@ -18,7 +18,7 @@ const Home = () => {
         <div className='w-full '>
           <Navbar />
         </div>
-        <div className='flex flex-col justify-center sm:grid sm:grid-cols-2 sm:grid-rows-4 w-full h-screen demo-wrap'>
+        <div className='flex flex-col justify-center sm:grid sm:grid-cols-2 sm:grid-rows-4 w-full h-full demo-wrap'>
           <img
             className="demo-bg"
             src="/assets/_stock_hamburger-49470.jpg"
@@ -81,11 +81,11 @@ const Home = () => {
           
         </div>
         {/*------------------------- */}
-        <div className='sm:col-span-1 col-span-2 h-screen'>
+        <div className='sm:col-span-1 col-span-2 h-full'>
           <div className=''>
-            <div className='w-full relative overflow-hidden h-screen'>
+            <div className='w-full relative overflow-hidden h-full'>
               <img
-                className=" asolute left-0 top-0 h-screen scale-x-150 translate-x-48"
+                className=" asolute left-0 top-0 h-screen scale-x-150 translate-x-24"
                 src="/assets/_sotck_repartidor-sacando-paquete-su-entrega.jpg"
                 alt="Imagen de un walkie entregando comida"
                 styles={{}}
@@ -127,7 +127,7 @@ const Home = () => {
       </section>
 
 
-      <section className='w-full scroll-area flex flex-col bg-primary-orange h-screen' id="comentarios">
+      <section className='w-full scroll-area flex flex-col bg-primary-orange h-full' id="comentarios">
         <div className='grid grid-cols-2 grid-rows-2 w-full h-full '>
         <div className='flex flex-col justify-center align-middle items-center p-12 bg-white col-span-2 row-span-1 sm:row-span-2  sm:col-span-1  w-full'>
           <h1 className=" text-left text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl">
@@ -139,8 +139,8 @@ const Home = () => {
 
         </div>
           {/*------------------------- */}
-          <div className='sm:col-span-1 col-span-2 flex flex-col  h-screen'>
-            <div className='flex flex-col w-full '>
+          <div className='row-span-1 sm:row-span-2 sm:col-span-1 col-span-2'>
+            <div className='flex flex-col w-full h-full '>
               <HelpForm />
             </div>
           </div>

@@ -59,11 +59,11 @@ const page = () => {
         fetchItems();
     }, []);
   return (
-    <section className='mt-16 h-screen mx-auto w-full flex flex-col  items-center'>
+    <section className='mt-16 mx-auto w-full flex flex-col  items-center'>
         <div className="flex items-center space-x-2 ml-auto">
             <Link
                 href="/cart"
-                className="px-3 py-2 inline-block text-center  text-gray-700 bg-white shadow-sm border border-gray-200 rounded-md hover:bg-gray-100 hover:border-gray-300"
+                className="px-3 mx-8 py-2 inline-block text-center  text-gray-700 bg-white shadow-sm border border-gray-200 rounded-md hover:bg-gray-100 hover:border-gray-300"
             >
                 <i className="text-gray-400 w-5 fa fa-shopping-cart"></i>
                 <span className="hidden lg:inline ml-1">

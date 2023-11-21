@@ -102,7 +102,7 @@ const Navbar = () => {
                             </div>
                         }
                         {/*DESKTOP NAVIGATION*/}
-                        <div className='sm:block hidden sm:max-2xl:hidden md:max-2xl:flex'>
+                        <div className='sm:block hidden sm:max-2xl:hidden md:flex'>
                             {session?.user ? (
                                 <div className=''>
                                     <Link
@@ -137,7 +137,7 @@ const Navbar = () => {
                             )}
                         </div>
                         {/*MOBILE NAVIGATION*/}
-                        <div className='sm:flex relative md:max-2xl:hidden'>
+                        <div className='sm:flex relative md:hidden'>
                             {session?.user ? (
                                 <div className='flex'>
                                     <Link
