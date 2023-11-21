@@ -40,7 +40,7 @@ const Navbar = () => {
           });*/
 
         /*let info = await fetch(
-          `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude}, ${longitude}&key=AIzaSyDbY20tuOJ2KCqdmgoGUYuZUBbqVSZe4Ss`
+          `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude},&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`
         ).then(async (resp) =>{
           console.log(await resp)
           let location = await resp.json()
@@ -151,7 +151,7 @@ const Navbar = () => {
                                     </button>
                                 </div>
                             ) : (
-                                <div className='md:max-2xl:hidden relative'>
+                                <div className='md:hidden relative'>
                                     <button
                                     onClick={() => { setToggleDropdown(!toggleDropdown) }}
                                     className='rounded-full px-2 py-3.5'>

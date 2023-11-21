@@ -1,8 +1,8 @@
 'use client'
 
 import React from 'react'
-import Map from '@components/Map'
 import Mapa from '@components/Mapa'
+import { MdCenterFocusStrong } from "react-icons/md";
 
 function page() {
     return (
@@ -20,7 +20,6 @@ function page() {
             <section>
                 <div className='w-full bg-orange-200'>
                     <Mapa />
-                    {/* <Map /> */}
                 </div>
             </section>
         </div>
