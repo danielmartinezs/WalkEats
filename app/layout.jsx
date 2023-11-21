@@ -8,32 +8,32 @@ export const metadata = {
   title: 'WalkEats',
   description: 'Description of WalkEats',
 }
- 
+
 export default function RootLayout({ children }) {
   const url = usePathname()
- return (
+  return (
     <html lang="en">
       <body>
         <Provider>
           <div className="main">
-            <div className="gradient"/>
+            <div className="gradient" />
           </div>
           <main className="app">
-          {url === '/' ? 
-          <>
-            
-          </>: 
-          <>
-          <Navbar/>
-          </>} 
+            {url === '/' ?
+              <>
+
+              </> :
+              <>
+                <Navbar />
+              </>}
             {children}
-            {url === '/' ? 
-          <>
-            
-          </>: 
-          <>
-            <Footer/>
-          </>} 
+            {url === '/' ?
+              <>
+
+              </> :
+              <>
+                <Footer />
+              </>}
           </main>
         </Provider>
       </body>

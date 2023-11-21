@@ -13,6 +13,10 @@ const StoreList = ({ data, loading }) => {
         set_selected(i)
     }
     const isValid = arrayOfArray => arrayOfArray.every(arr => Array.isArray(arr) && arr.length === 0)
+    useEffect(() => {
+        set_selected(0)
+    }, [])
+    
     return (
         <>
             {data.error ?
@@ -40,15 +44,15 @@ const StoreList = ({ data, loading }) => {
                                     <h1 className='text-xl mt-3'>Intenta bucando con otro nombre</h1>
                                 </div>
                                 </>
-                                : <>
+                                : <div className='wrapper'>
                                     <div className='w-full accordion'>
                                         {data.map((sto, i) => (
                                             <div key={i}>
                                                 {sto.length >= 1 ?
                                                     <>
-                                                        <div className='w-full store_accordion'>
+                                                        <div className='w-full store_accordion' style={{}}>
 
-                                                            <div className='store_accordion_title' onClick={() => toggle(i)}>
+                                                            <div className='store_accordion_title' style={{"backgroundImage": `url(${sto[0]?.picture})` }} onClick={() => toggle(i)}>
                                                                 <p >{sto[0]?.store}</p>
                                                                 <span>{_selected === i ? '-' : '+'}</span>
                                                             </div>
@@ -71,7 +75,7 @@ const StoreList = ({ data, loading }) => {
                                             </div>
                                         ))}
                                     </div>
-                                </>}
+                                </div>}
 
                         </>
                     }

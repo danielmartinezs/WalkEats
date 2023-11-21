@@ -195,27 +195,36 @@
 
 /*-------------------/Store------------------------*/
 .wrapper{
-  @apply flex h-screen w-full justify-center items-center
+  @apply flex w-full 
 }
 .accordion{
   @apply w-full p-3
 }
 .store_accordion{
-  @apply bg-slate-500 rounded-b-xl mt-5 mb-1 
+  @apply  rounded-b-xl mt-10 mb-1 overflow-hidden 
 }
 .store_accordion_title{
-  @apply p-3 text-center text-4xl flex justify-between items-center
+  box-shadow: inset 0 0 0 1000px rgba(0,0,0,.2);
+  background-size: 100% 100%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  @apply p-3 text-center text-4xl flex justify-between items-center 
 }
 .store_accordion_content{
   @apply overflow-hidden mt-5 max-h-0 hidden;
   transition: all 0.5s cubic-bezier(0,1,0,1);
 }
 .store_accordion_content.show{
-  @apply bg-white h-auto max-h-max grid my-8  w-full lg:grid-cols-4 md:grid-cols-3 lg:gap-5 gap-2;
+  @apply bg-white h-auto max-h-max grid my-8 mb-0 w-full lg:grid-cols-4 md:grid-cols-3 lg:gap-5 gap-2;
   transition: all 0.5s cubic-bezier(1,0,1,0);
 }
 .store_Card{
-  height: 28rem;
-  max-height: 28rem;
+  height: 24rem;
+  max-height: 24rem;
   @apply p-3;
+}
+
+footer {
+  
+  box-shadow: 0 50vh 0 50vh rgb(207 250 254) !important;
 }
