@@ -12,7 +12,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   const url = usePathname()
   return (
-    <html lang="en">
+    <html lang="en" >
+      <head>
+        <script type="text/javascript"
+          src={`http://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}></script>
+      </head>
       <body>
         <Provider>
           <div className="main">
