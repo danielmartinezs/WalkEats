@@ -31,11 +31,21 @@ export const CartProvider = ({ children }) => {
             return 0
         }
     }
+
+    const getTotal = () =>{
+    let totalCost = 0;
+    cart?.items?.forEach(item => {
+        console.log("total", item.price + " " + item.qty)
+        totalCost += item.price * item.qty;
+    });
+    return totalCost +20;
+    }
+
     const addItemToCart = async ({
         id_item,
         name,
         price,
-        url,
+        picture,
         store,
         categories, 
         qty =1
@@ -46,7 +56,7 @@ export const CartProvider = ({ children }) => {
             id_item, 
             name, 
             price, 
-            url, 
+            picture, 
             store, 
             categories, 
             qty
@@ -72,12 +82,20 @@ export const CartProvider = ({ children }) => {
     }
 
     const deleteItemFromCart = (id) => {
+        console.log("Delete cuz 0 id",id)
         const newCartItems = cart?.items?.filter((i) => i.id_item !== id);
-    
+        console.log("newCartItems cuz 0",JSON.stringify(newCartItems))
         localStorage.setItem("cart", JSON.stringify({ items: newCartItems }));
         setCartItems();
       };
-
+      const getStores = () =>{
+        let stores = [];
+        cart?.items?.forEach(item => {
+            if(stores[item.store])
+                console.log("store", [item.store]) 
+        });
+       return  stores 
+    }
     useEffect(() => {
       setCartItems()
     }, [])
@@ -88,7 +106,9 @@ export const CartProvider = ({ children }) => {
             {   cart, 
                 addItemToCart,
                 deleteItemFromCart,
-                getItemQTY
+                getItemQTY,
+                getTotal,
+                getStores
             }
             }>
             {children}

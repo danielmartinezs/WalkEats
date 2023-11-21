@@ -1,6 +1,9 @@
 import React from 'react'
 
 function PaymentForm() {
+    const handleChange = () =>{
+        
+    }
     return (
         <div className="min-w-screen min-h-screen bg-cyan-100 flex items-center justify-center px-5 pb-10 pt-16">
             <div className="w-full mx-auto rounded-lg bg-white shadow-lg p-5 text-gray-700 max-width-600px">
@@ -14,13 +17,13 @@ function PaymentForm() {
                 </div>
                 <div className="mb-3 flex -mx-2">
                     <div className="px-2">
-                        <label for="type1" className="flex items-center cursor-pointer">
-                            <input type="radio" className="form-radio h-5 w-5 text-indigo-500" name="type" id="type1" checked />
+                        <label htmlFor="type1" className="flex items-center cursor-pointer">
+                            <input type="radio" className="form-radio h-5 w-5 text-indigo-500" name="type" id="type1" onChange={handleChange} checked />
                             <img src="https://leadershipmemphis.org/wp-content/uploads/2020/08/780370.png" className="h-8 ml-3" />
                         </label>
                     </div>
                     <div className="px-2">
-                        <label for="type2" className="flex items-center cursor-pointer">
+                        <label htmlFor="type2" className="flex items-center cursor-pointer">
                             <input type="radio" className="form-radio h-5 w-5 text-indigo-500" name="type" id="type2" />
                             <img src="https://www.sketchappsources.com/resources/source-image/PayPalCard.png" className="h-8 ml-3" />
                         </label>
@@ -42,7 +45,7 @@ function PaymentForm() {
                     <div className="px-2 w-1/2">
                         <label className="font-bold text-sm mb-2 ml-1">Expiration date</label>
                         <div>
-                            <select class="form-select w-full px-3 py-2 mb-1 border-2 border-orange-300 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer">
+                            <select className="form-select w-full px-3 py-2 mb-1 border-2 border-orange-300 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer">
                                 <option value='01'>01 - January</option>
                                 <option value='02'>02 - February</option>
                                 <option value='03'>03 - March</option>
@@ -78,7 +81,7 @@ function PaymentForm() {
                     </div>
                 </div>
                 <div>
-                    <button className="block w-full max-w-xs mx-auto bg-emerald-400 hover:bg-primary-green focus:bg-primary-green text-white rounded-lg px-3 py-3 font-semibold"><i class="mdi mdi-lock-outline mr-1"></i> PAY NOW</button>
+                    <button className="block w-full max-w-xs mx-auto bg-emerald-400 hover:bg-primary-green focus:bg-primary-green text-white rounded-lg px-3 py-3 font-semibold"><i className="mdi mdi-lock-outline mr-1"></i> Pagar</button>
                 </div>
             </div>
         </div>

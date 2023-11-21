@@ -139,8 +139,8 @@ const Home = () => {
 
         </div>
           {/*------------------------- */}
-          <div className='sm:col-span-1 col-span-2 flex flex-col  h-full'>
-            <div className='flex flex-col w-full '>
+          <div className='row-span-1 sm:row-span-2 sm:col-span-1 col-span-2'>
+            <div className='flex flex-col w-full h-full '>
               <HelpForm />
             </div>
           </div>
