@@ -205,11 +205,12 @@
 }
 .store_accordion_title{
   box-shadow: inset 0 0 0 1000px rgba(0,0,0,.2);
-  background-size: 100% 100%;
+  background-size: 100% 100%; /*Cover*/
   background-position: 50% 50%;
-  background-repeat: no-repeat;
+  backdrop-filter: blur(10px);
   @apply p-3 text-center text-4xl flex justify-between items-center 
 }
+
 .store_accordion_content{
   @apply overflow-hidden mt-5 max-h-0 hidden;
   transition: all 0.5s cubic-bezier(0,1,0,1);

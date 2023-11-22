@@ -1,16 +1,12 @@
-'use client'
-import Navbar from "@components/Navbar"
 import Provider from "@components/Provider"
-import Footer from "@components/Footer"
 import '../styles/home.css'
-import { usePathname } from 'next/navigation'
 export const metadata = {
   title: 'WalkEats',
   description: 'Description of WalkEats',
 }
-
+import FooterLogic from "@components/FooterLogic"
+import NavBarLogic from "@components/NavBarLogic"
 export default function RootLayout({ children }) {
-  const url = usePathname()
   return (
     <html lang="en" >
       <head>
@@ -23,21 +19,9 @@ export default function RootLayout({ children }) {
             <div className="gradient" />
           </div>
           <main className="app">
-            {url === '/' ?
-              <>
-
-              </> :
-              <>
-                <Navbar />
-              </>}
+            <NavBarLogic />
             {children}
-            {url === '/' ?
-              <>
-
-              </> :
-              <>
-                <Footer />
-              </>}
+            <FooterLogic />
           </main>
         </Provider>
       </body>

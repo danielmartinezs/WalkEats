@@ -43,7 +43,7 @@ const LoginForm = () => {
                 return setError(res.error);
             }
             if (res?.ok) {
-                return router.push("/delivery");
+                return router.push("/store");
             }
             console.log(res);
         }

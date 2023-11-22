@@ -67,12 +67,12 @@ const Cart = () => {
       <section className="py-5 sm:py-7 ">
         <div className="container text-center  max-w-screen-xl mx-auto">
           <h2 className="text-3xl font-semibold mb-2">
-            {cart?.items?.length || 0} Item(s) in Cart
+            {cart?.items?.length || 0} Productos en el carrito
           </h2>
         </div>
       </section>
 
-      {cart?.items?.length > 0 && (
+      {cart?.items?.length > 0 ? 
         <section className="py-10">
           <div className="container max-w-screen-xl mx-auto px-4">
             <div className="flex flex-col md:flex-row gap-4">
@@ -198,7 +198,13 @@ const Cart = () => {
             </div>
           </div>
         </section>
-      )}
+      : 
+      <div className=" w-full flex flex-col justify-center items-center my-12">
+          <button 
+          className="w-1/5 h-10 text-white text-xl hover:bg-orange-400 bg-primary-orange rounded-xl ">
+            Regresar a la tienda
+          </button>
+      </div>}
     </div>
   );
 };

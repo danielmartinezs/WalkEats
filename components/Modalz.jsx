@@ -43,7 +43,7 @@ function Modalz({ id, modal, datos, total, sendMap }) {
             return setError("El monto ingresado es menor al total del pedido");
         }
         console.log(cart)
-        const response = await fetch('http://localhost:4000/api/pedidos/guardar', {
+        const response = await fetch('https://delivery.serverdepruebas.online/api/pedidos/guardar', {
         method: "POST",
         body: JSON.stringify(cart),
         headers: {
