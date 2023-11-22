@@ -67,7 +67,7 @@ const page = () => {
             >
                 <i className="text-gray-400 w-5 fa fa-shopping-cart"></i>
                 <span className="hidden lg:inline ml-1">
-                Cart (<b>{items?.length || 0}</b>)
+                Carrito (<b>{items?.length || 0}</b>)
                 </span>
             </Link>
         </div>

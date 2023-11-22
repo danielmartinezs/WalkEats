@@ -59,7 +59,7 @@ const RegisterForm = () => {
                 redirect: false,
             })
             if (res?.ok)
-                return router.push("/dashboard");
+                return router.push("/store");
         } catch (error) {
             if (error instanceof AxiosError) {
                 console.log(error);
